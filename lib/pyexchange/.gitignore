@@ -1,0 +1,17 @@
+.idea
+*.iml
+
+__pycache__
+.cache
+.coverage
+
+.DS_Store
+
+venv
+_virtualenv
+*.swp
+.vscode
+
+.pytest_cache/
+
+.etoro-unencrypted-key

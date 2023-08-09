@@ -1,0 +1,34 @@
+language: python
+
+os:
+  - linux
+
+python:
+  - 3.8
+
+services: docker
+
+cache: pip
+
+before_cache:
+  - rm -f $HOME/.cache/pip/log/debug.log
+
+before_install:
+  - . $HOME/.nvm/nvm.sh
+  - nvm install --lts
+  - nvm use --lts
+  - npm install -g ganache
+
+install:
+  - pip install virtualenv --upgrade
+  - pip install -r requirements.txt
+  - pip install -r requirements-dev.txt
+
+script:
+  - ./test.sh
+
+after_success:
+  - codecov
+
+notifications:
+  email: false

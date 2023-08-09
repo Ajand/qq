@@ -1,0 +1,38 @@
+env:
+  global:
+    - COMMIT=${TRAVIS_COMMIT::8}
+
+language: python
+
+os:
+  - linux
+
+python:
+  - 3.8.5
+
+services: docker
+
+cache: pip
+
+before_cache:
+  - rm -f $HOME/.cache/pip/log/debug.log
+
+install:
+  - pip install virtualenv --upgrade
+  - pip install -r requirements.txt
+  - pip install -r requirements-dev.txt
+
+script:
+  - "./test.sh"
+
+after_success:
+  - codecov
+
+deploy:
+  provider: script
+  script: ./.ci/docker_push.sh
+  on:
+    branch: master
+
+notifications:
+  email: false

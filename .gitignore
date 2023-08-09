@@ -1,0 +1,15 @@
+.idea
+*.iml
+
+__pycache__
+_virtualenv
+.cache
+.coverage
+
+.DS_Store
+*.swp
+tests/logs
+*.csv
+coverage.*
+
+my_run_auction_keeper.sh
